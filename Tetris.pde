@@ -41,7 +41,7 @@ void draw(){
   //of the level or garbage
   for (int i = tetrimino.length-1; i >= 0; i--){
     PVector mino = tetrimino[i];
-    if (mino.y > 20-1 && garbage[(int)mino.x][(int)mino.y+1]){
+    if (mino.y > 20-2 || garbage[(int)mino.x][(int)mino.y+1]){
       newPiece = true; 
     }
     
@@ -56,7 +56,7 @@ void draw(){
   if (!newPiece){
     for (int i = tetrimino.length-1; i >= 0; i--){
       PVector mino = tetrimino[i];
-        mino.add(new PVector(0,1));
+        //mino.add(new PVector(0,1));
     }
   }
   
@@ -92,6 +92,14 @@ void keyPressed(){
           if (mino.x < 10-1)
             mino.add(new PVector(1,0));
           break;
+        case UP:
+          if ((int)mino.copy().rotate(radians(90)).x >= 0 && 
+              (int)mino.copy().rotate(radians(90)).x < 10 &&
+              (int)mino.copy().rotate(radians(90)).y >= 0 &&
+              (int)mino.copy().rotate(radians(90)).x < 20){
+              
+                mino.rotate(radians(90));
+          }
       }
     }
   }
