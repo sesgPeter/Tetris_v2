@@ -27,8 +27,8 @@ void draw(){
   }
   
   //mino hasn't hit the lower bounds
-  //of the level
-  if (mino.y < 20-1){
+  //of the level or garbage
+  if (mino.y < 20-1 && !garbage[(int)mino.x][(int)mino.y]){
     mino.add(new PVector(0,1));
   } else {
     garbage[(int)mino.x][(int)mino.y] = true;
