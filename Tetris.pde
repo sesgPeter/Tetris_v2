@@ -21,6 +21,7 @@ void setup(){
 
 void draw(){
   if (newPiece){
+    translation = new PVector(0,0);
     tetrimino = createNewPiece();
     newPiece = false;
   }
@@ -61,8 +62,8 @@ void draw(){
     for (int i = tetrimino.length-1; i >= 0; i--){
       PVector mino = tetrimino[i];
         mino.add(new PVector(0,1));
-        translation.add(new PVector(0,-1));
     }
+    translation.add(new PVector(0,1));
   }
   
   //check for cleared lines
@@ -92,22 +93,39 @@ void keyPressed(){
         case LEFT:
           if (mino.x > 0)
             mino.add(new PVector(-1,0));
-            translation.add(new PVector(1,0));
+            translation.add(new PVector(-0.25,0));
           break;
         case RIGHT:
           if (mino.x < 10-1)
             mino.add(new PVector(1,0));
-            translation.add(new PVector(-1,0));
+            translation.add(new PVector(0.25,0));
           break;
         case UP:
-          if ((int)mino.copy().add(translation).rotate(radians(90)).sub(translation).x >= 0 && 
-              (int)mino.copy().add(translation).rotate(radians(90)).sub(translation).x < 10 &&
-              (int)mino.copy().add(translation).rotate(radians(90)).sub(translation).y >= 0 &&
-              (int)mino.copy().add(translation).rotate(radians(90)).sub(translation).x < 20){
-              
-                //mino.rotate(radians(90));
-                mino.add(translation).rotate(radians(90)).sub(translation);
+          if ((int)mino.copy().sub(translation).rotate(radians(90)).add(translation).x >= 0 && 
+              (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).x < 10 &&
+              (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).y >= 0 &&
+              (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).x < 20){
+                
+                mino = new PVector( 
+                        (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).x,
+                        (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).y);
+                println("t: " + translation);
+                println(mino);
+          } else {
+            println("rotation failed");
           }
+          break;
+       case DOWN:
+         if ((int)mino.copy().sub(translation).rotate(radians(-90)).add(translation).x >= 0 && 
+                (int)mino.copy().sub(translation).rotate(radians(-90)).add(translation).x < 10 &&
+                (int)mino.copy().sub(translation).rotate(radians(-90)).add(translation).y >= 0 &&
+                (int)mino.copy().sub(translation).rotate(radians(-90)).add(translation).x < 20){
+                    mino = new PVector( 
+                        (int)mino.copy().sub(translation).rotate(radians(-90)).add(translation).x,
+                        (int)mino.copy().sub(translation).rotate(radians(-90)).add(translation).y);
+                }
+         break;
+         
       }
     }
   }
