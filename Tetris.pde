@@ -45,8 +45,10 @@ void draw(){
       }
     }
     if (lineClear){
-      for (int x = 0; x < 10; x++){
-        garbage[x][y] = false;
+      for (int i = y; i > 0; i--){
+        for (int x = 0; x < 10; x++){
+          garbage[x][i] = garbage[x][i-1];
+        }
       }
     }
   }
