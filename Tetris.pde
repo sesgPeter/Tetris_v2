@@ -86,6 +86,9 @@ void draw(){
 }
 
 void keyPressed(){
+  
+  PVector newLocation = new PVector[4];
+  
   if (key == CODED){
       switch (keyCode){
         case LEFT:
@@ -140,19 +143,13 @@ void keyPressed(){
        println("pressed down");
        for (int i = 0; i < tetrimino.length; i++){
           PVector mino = tetrimino[i];
-          if ((int)mino.copy().sub(translation).rotate(radians(90)).add(translation).x >= 0 && 
-              (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).x < 10 &&
-              (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).y >= 0 &&
-              (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).x < 20){
-                
-                mino.set(new PVector( 
-                        round(mino.copy().sub(translation).rotate(radians(90)).add(translation).x),
-                        round(mino.copy().sub(translation).rotate(radians(90)).add(translation).y)));
-                println("t: " + translation);
-                println(mino);
-          } else {
-            println("rotation failed");
-          }
+            mino.set(new PVector( 
+                    round(mino.copy().sub(translation).rotate(radians(90)).add(translation).x),
+                    round(mino.copy().sub(translation).rotate(radians(90)).add(translation).y)));
+            newLocation[i] = mino;
+        }
+        if (!collision(newLocation)){
+          tetrimino = newLocation;
         }
          break;
          
