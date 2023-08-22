@@ -39,13 +39,13 @@ void draw(){
   
   //mino hasn't hit the lower bounds
   //of the level or garbage
-  for (int i = 0; i < tetrimino.length; i++){
+  for (int i = tetrimino.length; i >= 0; i--){
     PVector mino = tetrimino[i];
     if (mino.y < 20-1 && !garbage[(int)mino.x][(int)mino.y+1]){
       mino.add(new PVector(0,1));
     } else {
       garbage[(int)mino.x][(int)mino.y] = true;
-      mino = new PVector(5,0); 
+      newPiece = true; 
     }
   }
   
