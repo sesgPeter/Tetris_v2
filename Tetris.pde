@@ -106,9 +106,9 @@ void keyPressed(){
               (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).y >= 0 &&
               (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).x < 20){
                 
-                mino = new PVector( 
-                        (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).x,
-                        (int)mino.copy().sub(translation).rotate(radians(90)).add(translation).y);
+                mino.set(new PVector( 
+                        round(mino.copy().sub(translation).rotate(radians(90)).add(translation).x),
+                        round(mino.copy().sub(translation).rotate(radians(90)).add(translation).y)));
                 println("t: " + translation);
                 println(mino);
           } else {
@@ -121,8 +121,8 @@ void keyPressed(){
                 (int)mino.copy().sub(translation).rotate(radians(-90)).add(translation).y >= 0 &&
                 (int)mino.copy().sub(translation).rotate(radians(-90)).add(translation).x < 20){
                     mino = new PVector( 
-                        (int)mino.copy().sub(translation).rotate(radians(-90)).add(translation).x,
-                        (int)mino.copy().sub(translation).rotate(radians(-90)).add(translation).y);
+                        round(mino.copy().sub(translation).rotate(radians(-90)).add(translation).x),
+                        round(mino.copy().sub(translation).rotate(radians(-90)).add(translation).y));
                 }
          break;
          
