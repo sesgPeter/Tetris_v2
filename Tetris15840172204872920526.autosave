@@ -106,7 +106,7 @@ void keyPressed(){
         case RIGHT:
           //find rightmust mino
           PVector rightest = new PVector(0,0);
-          for (int i = 0; i > tetrimino.length; i++){
+          for (int i = 0; i < tetrimino.length; i++){
             if (tetrimino[i].x > rightest.x){
               rightest = tetrimino[i];
             }
