@@ -11,8 +11,13 @@ void draw(){
   
   rect(mino.x*32,mino.y*32, 32,32);
   
-  if (mino.y < 20-1)
+  //mino hasn't hit the lower bounds
+  //of the level
+  if (mino.y < 20-1){
     mino.add(new PVector(0,1));
+  } else {
+    mino = new PVector(5,0); 
+  }
 }
 
 void keyPressed(){
