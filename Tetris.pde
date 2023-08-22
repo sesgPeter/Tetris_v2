@@ -11,5 +11,6 @@ void draw(){
   
   rect(mino.x*32,mino.y*32, 32,32);
   
-  mino.add(new PVector(0,1));
+  if (mino.y < 20-1)
+    mino.add(new PVector(0,1));
 }
