@@ -39,7 +39,7 @@ void draw(){
   
   //mino hasn't hit the lower bounds
   //of the level or garbage
-  for (int i = tetrimino.length; i >= 0; i--){
+  for (int i = tetrimino.length-1; i >= 0; i--){
     PVector mino = tetrimino[i];
     if (mino.y < 20-1 && !garbage[(int)mino.x][(int)mino.y+1]){
       mino.add(new PVector(0,1));
@@ -47,6 +47,16 @@ void draw(){
       garbage[(int)mino.x][(int)mino.y] = true;
       newPiece = true; 
     }
+    
+    if (newPiece){
+      for (int j = 0; j < tetrimino.length; j++){
+        garbage[(int)tetrimino[j].x][(int)tetrimino[j].y] = true;
+      }
+    }
+    
+    //stops the minos form falling down, after
+    //garbage has been hit;
+    if (newPiece) break;
   }
   
   //check for cleared lines
@@ -87,6 +97,7 @@ void keyPressed(){
 }
 
 PVector[] createNewPiece(){
+  
   PVector[] newP = new PVector[4]; 
   
   newP[0] = OPiece[0].copy(); 
