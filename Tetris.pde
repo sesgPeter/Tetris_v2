@@ -1,4 +1,5 @@
-PVector mino = new PVector(5,0); 
+boolean newPiece;
+PVector[] tetrimino; 
 
 //the old blocks in level, not
 //yet removed
@@ -10,12 +11,22 @@ void setup(){
   frameRate(4);
   
   garbage = new boolean[10][20];
+  
+  newPiece = true;
 }
 
 void draw(){
+  if (newPiece){
+    tetrimino = createNewPiece();
+    newPiece = false;
+  }
+  
   background(0);
   
-  rect(mino.x*32,mino.y*32, 32,32);
+  for (int i = 0; i < tetrimino.length; i++){
+    PVector mino = tetrimino[i];
+    rect(mino.x*32,mino.y*32, 32,32);
+  }
   
   //draw garbage
   for (int y = 0; y < 20; y++){
@@ -28,11 +39,14 @@ void draw(){
   
   //mino hasn't hit the lower bounds
   //of the level or garbage
-  if (mino.y < 20-1 && !garbage[(int)mino.x][(int)mino.y+1]){
-    mino.add(new PVector(0,1));
-  } else {
-    garbage[(int)mino.x][(int)mino.y] = true;
-    mino = new PVector(5,0); 
+  for (int i = 0; i < tetrimino.length; i++){
+    PVector mino = tetrimino[i];
+    if (mino.y < 20-1 && !garbage[(int)mino.x][(int)mino.y+1]){
+      mino.add(new PVector(0,1));
+    } else {
+      garbage[(int)mino.x][(int)mino.y] = true;
+      mino = new PVector(5,0); 
+    }
   }
   
   //check for cleared lines
@@ -56,15 +70,29 @@ void draw(){
 
 void keyPressed(){
   if (key == CODED){
-    switch (keyCode){
-      case LEFT:
-        if (mino.x > 0)
-          mino.add(new PVector(-1,0));
-        break;
-      case RIGHT:
-        if (mino.x < 10-1)
-          mino.add(new PVector(1,0));
-        break;
+    for (int i = 0; i < tetrimino.length; i++){
+      PVector mino = tetrimino[i];
+      switch (keyCode){
+        case LEFT:
+          if (mino.x > 0)
+            mino.add(new PVector(-1,0));
+          break;
+        case RIGHT:
+          if (mino.x < 10-1)
+            mino.add(new PVector(1,0));
+          break;
+      }
     }
   }
+}
+
+PVector[] createNewPiece(){
+  PVector[] newP = new PVector[4]; 
+  
+  newP[0] = OPiece[0].copy(); 
+  newP[1] = OPiece[1].copy(); 
+  newP[2] = OPiece[2].copy(); 
+  newP[3] = OPiece[3].copy(); 
+  
+  return newP;
 }
