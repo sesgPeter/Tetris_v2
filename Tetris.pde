@@ -87,7 +87,7 @@ void draw(){
 
 void keyPressed(){
   
-  PVector newLocation = new PVector[4];
+  PVector[] newLocation = new PVector[4];
   
   if (key == CODED){
       switch (keyCode){

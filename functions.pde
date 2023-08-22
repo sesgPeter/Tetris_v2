@@ -11,10 +11,13 @@ boolean collision(PVector[] tetrimino){
           return true;
     }
     
+    //BUG Here
     //collides with garbage
     if (garbage[round(mino.x)][round(mino.y)] == true) {
       return true;
     }
     
+  
+  }
   return false;
 }
