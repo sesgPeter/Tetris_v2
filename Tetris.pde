@@ -28,11 +28,27 @@ void draw(){
   
   //mino hasn't hit the lower bounds
   //of the level or garbage
-  if (mino.y < 20-1 && !garbage[(int)mino.x][(int)mino.y]){
+  if (mino.y < 20-1 && !garbage[(int)mino.x][(int)mino.y+1]){
     mino.add(new PVector(0,1));
   } else {
     garbage[(int)mino.x][(int)mino.y] = true;
     mino = new PVector(5,0); 
+  }
+  
+  //check for cleared lines
+  for (int y = 0; y < 20; y++){
+    boolean lineClear = true;
+    for (int x = 0; x < 10; x++){
+      if (!garbage[x][y]){
+        lineClear = false;
+        break;
+      }
+    }
+    if (lineClear){
+      for (int x = 0; x < 10; x++){
+        garbage[x][y] = false;
+      }
+    }
   }
 }
 
