@@ -14,3 +14,16 @@ void draw(){
   if (mino.y < 20-1)
     mino.add(new PVector(0,1));
 }
+
+void keyPressed(){
+  if (key == CODED){
+    switch (keyCode){
+      case LEFT:
+        mino.add(new PVector(-1,0));
+        break;
+      case RIGHT:
+        mino.add(new PVector(1,0));
+        break;
+    }
+  }
+}
