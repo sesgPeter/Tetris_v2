@@ -98,12 +98,16 @@ void keyPressed(){
 
 PVector[] createNewPiece(){
   
+  PVector[] pTetrimino;
+  
   PVector[] newP = new PVector[4]; 
   
-  newP[0] = OPiece[0].copy(); 
-  newP[1] = OPiece[1].copy(); 
-  newP[2] = OPiece[2].copy(); 
-  newP[3] = OPiece[3].copy(); 
+  pTetrimino = random(1) <= 0.5 ? OPiece : IPiece;
+  
+  newP[0] = pTetrimino[0].copy(); 
+  newP[1] = pTetrimino[1].copy(); 
+  newP[2] = pTetrimino[2].copy(); 
+  newP[3] = pTetrimino[3].copy(); 
   
   return newP;
 }
