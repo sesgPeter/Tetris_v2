@@ -19,10 +19,12 @@ void keyPressed(){
   if (key == CODED){
     switch (keyCode){
       case LEFT:
-        mino.add(new PVector(-1,0));
+        if (mino.x > 0)
+          mino.add(new PVector(-1,0));
         break;
       case RIGHT:
-        mino.add(new PVector(1,0));
+        if (mino.x < 10-1)
+          mino.add(new PVector(1,0));
         break;
     }
   }
