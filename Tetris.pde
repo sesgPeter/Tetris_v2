@@ -12,10 +12,20 @@ void setup(){
   
   frameRate(4);
   
+  //the tetriminos which a 'dead'
+  //we store them in a boolean
+  //array, as we only need to 
+  //if they are there or not
   garbage = new boolean[10][20];
   
+  //should we create a new 
+  //tetrimino at the start
+  //of next loop
   newPiece = true;
   
+  //used to rotate the tetriminos
+  //try and figure out how it 
+  //works. HARD
   translation = new PVector(0,0);
 }
 
