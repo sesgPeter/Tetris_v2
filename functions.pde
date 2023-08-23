@@ -6,14 +6,12 @@ boolean collision(PVector[] tetrimino){
     
     //collides with screen edges
     //we allow the minos to be above the screen
-    if (round(mino.x) <= 0 && round(mino.x) > 10 &&
+    if (round(mino.x) < 0 || round(mino.x) > 10 ||
         round(mino.x) > 20){
           return true;
     }
-    
-    //BUG Here
     //collides with garbage
-    if (garbage[round(mino.x)][round(mino.y)] == true) {
+    else if (mino.y >= 0 && garbage[round(mino.x)][round(mino.y)] == true) {
       return true;
     }
     
