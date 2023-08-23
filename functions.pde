@@ -14,8 +14,32 @@ boolean collision(PVector[] tetrimino){
     else if (mino.y >= 0 && garbage[round(mino.x)][round(mino.y)] == true) {
       return true;
     }
-    
-  
   }
   return false;
+}
+
+//creates a new piece, and places it above
+//the screen
+PVector[] createNewPiece(){
+  
+  PVector[] pTetrimino;
+  
+  PVector[] newP = new PVector[4]; 
+  
+  //tetrinary expression//
+  //we need another why to pick tetriminos
+  //when we have more then two.
+  pTetrimino = random(1) <= 0.5 ? OPiece : IPiece;
+  
+  //we move the piece, to where we want to spawn
+  //it. It's importent that translation and the
+  //tetrimino[] are in synch for rotation to function
+  translation = new PVector(0,-5);
+  
+  newP[0] = pTetrimino[0].copy().add(translation); 
+  newP[1] = pTetrimino[1].copy().add(translation); 
+  newP[2] = pTetrimino[2].copy().add(translation); 
+  newP[3] = pTetrimino[3].copy().add(translation); 
+  
+  return newP;
 }

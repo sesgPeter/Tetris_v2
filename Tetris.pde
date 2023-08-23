@@ -46,8 +46,10 @@ void draw(){
   //of the level or garbage
   for (int i = tetrimino.length-1; i >= 0; i--){
     PVector mino = tetrimino[i];
-    if (mino.y > 20-2 || garbage[(int)mino.x][(int)mino.y+1]){
-      newPiece = true; 
+    if (mino.y >= 0){ //we don't check collision if piece is above the sceen
+      if (mino.y > 20-2 || garbage[(int)mino.x][(int)mino.y+1]){
+        newPiece = true; 
+      }
     }
     
     if (newPiece){
@@ -134,7 +136,6 @@ void keyPressed(){
         }
           break;
        case DOWN:
-       println("pressed down");
        for (int i = 0; i < tetrimino.length; i++){
           PVector mino = tetrimino[i].copy();
             mino.set(new PVector( 
@@ -145,24 +146,7 @@ void keyPressed(){
         if (!collision(newLocation)){
           tetrimino = newLocation;
         }
-         break;
-         
+         break;   
       }
   }
-}
-
-PVector[] createNewPiece(){
-  
-  PVector[] pTetrimino;
-  
-  PVector[] newP = new PVector[4]; 
-  
-  pTetrimino = random(1) <= 0.5 ? OPiece : IPiece;
-  
-  newP[0] = pTetrimino[0].copy(); 
-  newP[1] = pTetrimino[1].copy(); 
-  newP[2] = pTetrimino[2].copy(); 
-  newP[3] = pTetrimino[3].copy(); 
-  
-  return newP;
 }
