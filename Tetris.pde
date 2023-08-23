@@ -136,6 +136,11 @@ void keyPressed(){
           }
           break;
         case UP:
+	//iterate through all minos in the 
+	//tetrimino, copy and rotate them
+	//we then check if the new location
+	//is valid, if yes we use the new
+	//copy as the current tetrimino
         for (int i = 0; i < tetrimino.length; i++){
           PVector mino = tetrimino[i].copy();
             mino.set(new PVector( 
