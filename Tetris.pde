@@ -38,6 +38,8 @@ void draw(){
   
   background(0);
   
+  //draw the minos of the active
+  //tetrimino. 
   for (int i = 0; i < tetrimino.length; i++){
     PVector mino = tetrimino[i];
     rect(mino.x*32,mino.y*32, 32,32);
