@@ -1,22 +1,37 @@
+final int tileSize = 32;
+final int screenWidth = 10;
+final int screenHeight = 20;
+
 boolean newPiece;
+
+//PVector array used to store
+//the coordinates of the minos
+//of a tetrimino
 PVector[] tetrimino; 
 
+//PVector used to rotete 
+//the tetriminos
 PVector translation;
 
 //the old blocks in level, not
 //yet removed
 boolean[][] garbage;
 
-void setup(){
-  size(320,640);
-  
+//Special functions, where we
+//are allowed to use viables
+//to set screen size
+void settings(){
+  size(screenWidth*tileSize, screenHeight*tileSize);
+}
+
+void setup(){  
   frameRate(4);
   
   //the tetriminos which a 'dead'
   //we store them in a boolean
   //array, as we only need to 
   //if they are there or not
-  garbage = new boolean[10][20];
+  garbage = new boolean[screenWidth][screenHeight];
   
   //should we create a new 
   //tetrimino at the start
@@ -42,14 +57,14 @@ void draw(){
   //tetrimino. 
   for (int i = 0; i < tetrimino.length; i++){
     PVector mino = tetrimino[i];
-    rect(mino.x*32,mino.y*32, 32,32);
+    rect(mino.x*tileSize,mino.y*tileSize, tileSize,tileSize);
   }
   
   //draw garbage
-  for (int y = 0; y < 20; y++){
-    for (int x = 0; x < 10; x++){
+  for (int y = 0; y < screenHeight; y++){
+    for (int x = 0; x < screenWidth; x++){
       if (garbage[x][y]){
-        rect(x*32,y*32, 32,32);
+        rect(x*tileSize,y*tileSize, tileSize,tileSize);
       }
     }
   }
@@ -59,11 +74,13 @@ void draw(){
   for (int i = tetrimino.length-1; i >= 0; i--){
     PVector mino = tetrimino[i];
     if (mino.y >= 0){ //we don't check collision if piece is above the sceen
-      if (mino.y > 20-2 || garbage[(int)mino.x][(int)mino.y+1]){
+      if (mino.y >= screenHeight-1 || garbage[(int)mino.x][(int)mino.y+1]){
         newPiece = true; 
       }
     }
     
+    //when a new piece is to be generated
+    //we put the current piece to garbage
     if (newPiece){
       for (int j = 0; j < tetrimino.length; j++){
         garbage[(int)tetrimino[j].x][(int)tetrimino[j].y] = true;
@@ -81,9 +98,9 @@ void draw(){
   }
   
   //check for cleared lines
-  for (int y = 0; y < 20; y++){
+  for (int y = 0; y < screenHeight; y++){
     boolean lineClear = true;
-    for (int x = 0; x < 10; x++){
+    for (int x = 0; x < screenWidth; x++){
       if (!garbage[x][y]){
         lineClear = false;
         break;
@@ -91,7 +108,7 @@ void draw(){
     }
     if (lineClear){
       for (int i = y; i > 0; i--){
-        for (int x = 0; x < 10; x++){
+        for (int x = 0; x < screenWidth; x++){
           garbage[x][i] = garbage[x][i-1];
         }
       }
@@ -107,7 +124,7 @@ void keyPressed(){
       switch (keyCode){
         case LEFT:
           //find leftmust mino
-          PVector leftest = new PVector(10,0);
+          PVector leftest = new PVector(screenWidth,0);
           for (int i = 0; i < tetrimino.length; i++){
             if (tetrimino[i].x < leftest.x){
               leftest = tetrimino[i];
@@ -128,7 +145,7 @@ void keyPressed(){
               rightest = tetrimino[i];
             }
           }
-          if (rightest.x < 10-1){
+          if (rightest.x < screenWidth-1){
             for (int i = 0; i < tetrimino.length; i++){
               tetrimino[i].x++;
             }
