@@ -117,11 +117,11 @@ void draw(){
 }
 
 void keyPressed(){
-  
+  int currKey = keyCode;
   PVector[] newLocation = new PVector[4];
   
   if (key == CODED){
-      switch (keyCode){
+      switch (currKey){
         case LEFT:
           //find leftmust mino
           PVector leftest = new PVector(screenWidth,0);
