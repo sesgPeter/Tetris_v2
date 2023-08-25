@@ -11,7 +11,7 @@ boolean collision(PVector[] tetrimino){
           return true;
     }
     //collides with garbage
-    else if (mino.y >= 0 && garbage[round(mino.x)][round(mino.y)] == true) {
+    if (mino.y >= 0 && garbage[round(mino.x)][round(mino.y)] == true) {
       return true;
     }
   }
@@ -26,7 +26,7 @@ PVector[] createNewPiece(){
   
   PVector[] newP = new PVector[4]; 
   
-  //tetrinary expression//
+  //TETRINARY EXPRESSION//
   //we need another why to pick tetriminos
   //when we have more then two.
   pTetrimino = random(1) <= 0.5 ? OPiece : IPiece;
@@ -36,6 +36,8 @@ PVector[] createNewPiece(){
   //tetrimino[] are in synch for rotation to function
   translation = new PVector(0,-5);
   
+  //we use the copy function to make sure that
+  //we don't change the original tetrimino.
   newP[0] = pTetrimino[0].copy().add(translation); 
   newP[1] = pTetrimino[1].copy().add(translation); 
   newP[2] = pTetrimino[2].copy().add(translation); 
