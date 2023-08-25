@@ -180,17 +180,17 @@ void keyPressed(){
 }
 
 //ASSIGNMENTS
-//Easy
-//*Have the tetriminos spawn at the top above of the screen
-//*Implement the remaining tetriminos
-//*Implement game over
-//*Implement score
-//*Have the game speed up as time goes on
-//Medium
-//*Rotate tetriminos around their center
-//*Refactor the code, so that it is easier to read.
-//hard
-//*Allow the player to move the tetriminos left and right multiple times before it moves down
-//*Implement a hold/swap function
-//*Implement a preview of the next piece
-//*Implement a 'hard drop' function
+//GREEN
+  //*Have the tetriminos spawn at the top above of the screen
+  //*Implement the remaining tetriminos
+  //*Implement game over
+  //*Implement score
+  //*Have the game speed up as time goes on
+//YELLOW
+  //*Rotate tetriminos around their center
+  //*Refactor the code, so that it is easier to read.
+//RED
+  //*Allow the player to move the tetriminos left and right multiple times before it moves down
+  //*Implement a hold/swap function
+  //*Implement a preview of the next piece
+  //*Implement a 'hard drop' function
