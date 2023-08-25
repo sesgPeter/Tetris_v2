@@ -123,35 +123,29 @@ void keyPressed(){
   if (key == CODED){
       switch (currKey){
         case LEFT:
-          //find leftmust mino
-          PVector leftest = new PVector(screenWidth,0);
+          //copy the tetrimino and move it left
+          //if the new location is valid
+          PVector copyTetrimino[] = new PVector[tetrimino.length];
           for (int i = 0; i < tetrimino.length; i++){
-            if (tetrimino[i].x < leftest.x){
-              leftest = tetrimino[i];
-            }
+            copyTetrimino[i] = tetrimino[i].copy().sub(new PVector(1,0));
           }
-          if (leftest.x > 0){
-            for (int i = 0; i < tetrimino.length; i++){
-              tetrimino[i].x--;
-            }
-            translation.add(new PVector(-1,0));
+          if (!collision(copyTetrimino)){
+            tetrimino = copyTetrimino;
+            translation.sub(new PVector(1,0));
           }
           break;
         case RIGHT:
-          //find rightmust mino
-          PVector rightest = new PVector(0,0);
+         //copy the tetrimino and move it right
+          //if the new location is valid
+          PVector copyTetrimino2[] = new PVector[tetrimino.length];
           for (int i = 0; i < tetrimino.length; i++){
-            if (tetrimino[i].x > rightest.x){
-              rightest = tetrimino[i];
-            }
+            copyTetrimino2[i] = tetrimino[i].copy().add(new PVector(1,0));
           }
-          if (rightest.x < screenWidth-1){
-            for (int i = 0; i < tetrimino.length; i++){
-              tetrimino[i].x++;
-            }
+          if (!collision(copyTetrimino2)){
+            tetrimino = copyTetrimino2;
             translation.add(new PVector(1,0));
           }
-          break;
+         break;
         case UP:
 	//iterate through all minos in the 
 	//tetrimino, copy and rotate them
@@ -195,7 +189,6 @@ void keyPressed(){
 //Medium
 //*Rotate tetriminos around their center
 //*Refactor the code, so that it is easier to read.
-//*BUGFIX: Implement the collision() function when moving left and right
 //hard
 //*Allow the player to move the tetriminos left and right multiple times before it moves down
 //*Implement a hold/swap function
