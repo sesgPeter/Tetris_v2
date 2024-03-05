@@ -25,7 +25,7 @@ void settings(){
 }
 
 void setup(){  
-  frameRate(4);
+  frameRate(30);
   
   //the tetriminos which a 'dead'
   //we store them in a boolean
@@ -89,7 +89,7 @@ void draw(){
     }
   }
   
-  if (!newPiece){
+  if (!newPiece && frameCount%5 == 0){
     for (int i = tetrimino.length-1; i >= 0; i--){
       PVector mino = tetrimino[i];
         mino.add(new PVector(0,1));
