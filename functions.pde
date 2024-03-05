@@ -29,7 +29,7 @@ PVector[] createNewPiece(){
   //TETRINARY EXPRESSION//
   //we need another why to pick tetriminos
   //when we have more then two.
-  int chosenPiece = (int)random(3);
+  int chosenPiece = (int)random(4);
   switch(chosenPiece){
     case 0:
       pTetrimino = OPiece;
@@ -40,6 +40,8 @@ PVector[] createNewPiece(){
     case 2:
       pTetrimino = SPiece;
       break;
+case 3:
+  pTetrimino = Tpiece;
     default:
       pTetrimino = OPiece;
       break;
