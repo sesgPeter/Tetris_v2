@@ -89,7 +89,7 @@ void draw(){
     }
   }
   
-  if (!newPiece){
+  if (!newPiece && frameCount%5 == 0){
     for (int i = tetrimino.length-1; i >= 0; i--){
       PVector mino = tetrimino[i];
         mino.add(new PVector(0,1));
