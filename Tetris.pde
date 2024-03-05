@@ -25,7 +25,7 @@ void settings(){
 }
 
 void setup(){  
-  frameRate(4);
+  frameRate(30);
   
   //the tetriminos which a 'dead'
   //we store them in a boolean
